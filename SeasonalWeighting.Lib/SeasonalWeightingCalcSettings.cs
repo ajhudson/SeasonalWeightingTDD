@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SeasonalWeighting.Lib
 {
-    public interface ISeasonalWeightingCalculator
+    public class SeasonalWeightingCalcSettings
     {
-        int CalculateEstimatedUsage(SeasonalWeightingCalcSettings settings);
+        public int AnnualQuantity { get; set; }
+
+        
     }
 }

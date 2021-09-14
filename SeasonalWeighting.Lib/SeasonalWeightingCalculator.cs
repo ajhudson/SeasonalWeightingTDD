@@ -8,9 +8,18 @@ namespace SeasonalWeighting.Lib
 {
     public class SeasonalWeightingCalculator : ISeasonalWeightingCalculator
     {
-        public int CalculateSeasonalWeighting()
+        private const int DaysInYear = 365;
+
+        public int CalculateEstimatedUsage(SeasonalWeightingCalcSettings settings)
         {
-            throw new NotImplementedException();
+            int dailyUsage = settings.AnnualQuantity / DaysInYear;
+            int seasonalWeighting = 20;
+            decimal seasonalWeightingMultiplier = dailyUsage / seasonalWeighting;
+            decimal dailyAnnualQuantityWithWeightingKwh = dailyUsage * (seasonalWeightingMultiplier + 1.0m);
+            int daysInBillingPeriod = 31;
+            decimal estimatedUsage = dailyAnnualQuantityWithWeightingKwh * daysInBillingPeriod;
+
+            return 0;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace SeasonalWeighting.Lib
         {
             int dailyUsage = settings.AnnualQuantity / DaysInYear;
             int seasonalWeighting = 20;
-            decimal seasonalWeightingMultiplier = dailyUsage / seasonalWeighting;
+            decimal seasonalWeightingMultiplier = dailyUsage * (seasonalWeighting /;
             decimal dailyAnnualQuantityWithWeightingKwh = dailyUsage * (seasonalWeightingMultiplier + 1.0m);
             int daysInBillingPeriod = 31;
             decimal estimatedUsage = dailyAnnualQuantityWithWeightingKwh * daysInBillingPeriod;

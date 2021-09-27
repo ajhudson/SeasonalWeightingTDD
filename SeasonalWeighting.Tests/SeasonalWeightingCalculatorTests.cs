@@ -4,7 +4,8 @@ using Shouldly;
 
 namespace SeasonalWeighting.Tests
 {
-    public class Tests
+    [TestFixture]
+    public class SeasonalWeightingCalculatorTests
     {
         private ISeasonalWeightingCalculator _seasonalWeightingCalculator;
 
@@ -32,16 +33,14 @@ namespace SeasonalWeighting.Tests
         public void ShouldCalcWhenSeasonalWeightingIsPercentageIncreaseOfAnnualQuantity()
         {
             // Arrange
-            var settings = new SeasonalWeightingCalcSettings
-            {
-                AnnualQuantity = 36500
-            };
+            int annualQuantity = 36500;
+            int seasonalWeighting = 20;
 
             // Act
-            int result = this._seasonalWeightingCalculator.CalculateEstimatedUsage(settings);
+            decimal result = this._seasonalWeightingCalculator.CalculateEstimatedUsage(annualQuantity, seasonalWeighting);
 
             // Assert
-            result.ShouldBe(3720);
+            result.ShouldBe(3720.0m);
         }
     }
 }

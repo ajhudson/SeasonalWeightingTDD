@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeasonalWeighting.Lib
 {
@@ -10,16 +6,9 @@ namespace SeasonalWeighting.Lib
     {
         private const int DaysInYear = 365;
 
-        public int CalculateEstimatedUsage(SeasonalWeightingCalcSettings settings)
+        public decimal CalculateEstimatedUsage(int annualQuantity, int seasonalWeighting)
         {
-            int dailyUsage = settings.AnnualQuantity / DaysInYear;
-            int seasonalWeighting = 20;
-            decimal seasonalWeightingMultiplier = dailyUsage * (seasonalWeighting /;
-            decimal dailyAnnualQuantityWithWeightingKwh = dailyUsage * (seasonalWeightingMultiplier + 1.0m);
-            int daysInBillingPeriod = 31;
-            decimal estimatedUsage = dailyAnnualQuantityWithWeightingKwh * daysInBillingPeriod;
-
-            return 0;
+            throw new NotImplementedException();
         }
     }
 }

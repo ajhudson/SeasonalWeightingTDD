@@ -66,7 +66,7 @@ namespace SeasonalWeighting.Tests
         public void ShouldReturnCorrectResultForScenario4()
         {
             // Arrange
-            var januaryBillingInfo = CreateBillingInfo(new DateTime(2020, 1, 25), new DateTime(2020, 3, 31), 20);
+            var januaryBillingInfo = CreateBillingInfo(new DateTime(2020, 1, 26), new DateTime(2020, 1, 31), 20);
             var februaryBillingInfo = CreateBillingInfo(new DateTime(2020, 2, 1), new DateTime(2020, 2, 29), 22);
             var marchBillingInfo = CreateBillingInfo(new DateTime(2020, 3, 1), new DateTime(2020, 3, 31), 24);
 
@@ -85,7 +85,7 @@ namespace SeasonalWeighting.Tests
             decimal result = this._seasonalWeightingCalculator.Estimate(estimationSettings);
 
             // Assert
-            result.ShouldBe(11226.0m);
+            result.ShouldBe(8102.0m);
         }
 
         private static BillingPeriodInfo CreateBillingInfo(DateTime start, DateTime end, int seasonalWeighting)

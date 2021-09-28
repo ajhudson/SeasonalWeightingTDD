@@ -49,15 +49,15 @@ namespace SeasonalWeighting.Tests
             // Arrange
             var januaryBillingInfo = new BillingPeriodInfo
             {
-                StartDate = new DateTime(2021, 1, 1),
-                EndDate = new DateTime(2021, 1, 31),
+                StartDate = new DateTime(2020, 1, 1),
+                EndDate = new DateTime(2020, 1, 31),
                 SeasonalWeighting = 20
             };
 
             var februaryBillingInfo = new BillingPeriodInfo
             {
-                StartDate = new DateTime(2021, 2, 1),
-                EndDate = new DateTime(2021, 2, 28),
+                StartDate = new DateTime(2020, 2, 1),
+                EndDate = new DateTime(2020, 2, 29),
                 SeasonalWeighting = 22
             };
 

@@ -8,7 +8,13 @@ namespace SeasonalWeighting.Lib
 
         public decimal CalculateEstimatedUsage(int annualQuantity, int seasonalWeighting)
         {
-            throw new NotImplementedException();
+            int dailyUsage = annualQuantity / DaysInYear;
+            decimal seasonalWeightingMultiplier = seasonalWeighting / 100.0m;
+            decimal dailyAnnualQuantityWithWeightingKwh = dailyUsage * (seasonalWeightingMultiplier + 1.0m);
+            int daysInBillingPeriod = 31;
+            decimal estimatedUsage = dailyAnnualQuantityWithWeightingKwh * daysInBillingPeriod;
+
+            return estimatedUsage;
         }
     }
 }

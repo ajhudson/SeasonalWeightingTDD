@@ -16,31 +16,18 @@ namespace SeasonalWeighting.Tests
         }
 
         [Test]
-        public void ShouldReturnCorrectResultForScenario1()
+        [TestCase(20, 3720)]
+        [TestCase(-20, 2480)]
+        public void ShouldReturnCorrectResultForScenario1And2(int seasonalWeighting, decimal expectedResult)
         {
             // Arrange
             int annualQty = 36500;
-            int seasonalWeighting = 20;
 
             // Act
             decimal result = this._seasonalWeightingCalculator.Estimate(annualQty, seasonalWeighting);
 
             // Assert
-            result.ShouldBe(3720.0m);
-        }
-
-        [Test]
-        public void ShouldReturnCorrectResultForScenario2()
-        {
-            // Arrange
-            int annualQty = 36500;
-            int seasonalWeighting = -20;
-
-            // Act
-            decimal result = this._seasonalWeightingCalculator.Estimate(annualQty, seasonalWeighting);
-
-            // Assert
-            result.ShouldBe(2480.0m);
+            result.ShouldBe(expectedResult);
         }
     }
 }

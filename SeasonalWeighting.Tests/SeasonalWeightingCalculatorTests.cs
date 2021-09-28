@@ -23,12 +23,7 @@ namespace SeasonalWeighting.Tests
         public void ShouldReturnCorrectResultForScenario1And2(int seasonalWeighting, decimal expectedResult)
         {
             // Arrange
-            var januaryBillingInfo = new BillingPeriodInfo
-            {
-                StartDate = new DateTime(2021, 1, 1),
-                EndDate = new DateTime(2021, 1, 31),
-                SeasonalWeighting = seasonalWeighting
-            };
+            var januaryBillingInfo = CreateBillingInfo(new DateTime(2021, 1, 1), new DateTime(2021, 1, 31), seasonalWeighting);
 
             var estimationSettings = new EstimationSettings
             {
@@ -47,19 +42,8 @@ namespace SeasonalWeighting.Tests
         public void ShouldReturnCorrectResultForScenario3()
         {
             // Arrange
-            var januaryBillingInfo = new BillingPeriodInfo
-            {
-                StartDate = new DateTime(2020, 1, 1),
-                EndDate = new DateTime(2020, 1, 31),
-                SeasonalWeighting = 20
-            };
-
-            var februaryBillingInfo = new BillingPeriodInfo
-            {
-                StartDate = new DateTime(2020, 2, 1),
-                EndDate = new DateTime(2020, 2, 29),
-                SeasonalWeighting = 22
-            };
+            var januaryBillingInfo = CreateBillingInfo(new DateTime(2020, 1, 1), new DateTime(2020, 1, 31), 20);
+            var februaryBillingInfo = CreateBillingInfo(new DateTime(2020, 2, 1), new DateTime(2020, 2, 29), 22);
 
             var estimationSettings = new EstimationSettings
             {
@@ -76,6 +60,42 @@ namespace SeasonalWeighting.Tests
 
             // Assert
             result.ShouldBe(7258.0m);
+        }
+
+        [Test]
+        public void ShouldReturnCorrectResultForScenario4()
+        {
+            // Arrange
+            var januaryBillingInfo = CreateBillingInfo(new DateTime(2020, 1, 25), new DateTime(2020, 3, 31), 20);
+            var februaryBillingInfo = CreateBillingInfo(new DateTime(2020, 2, 1), new DateTime(2020, 2, 29), 22);
+            var marchBillingInfo = CreateBillingInfo(new DateTime(2020, 3, 1), new DateTime(2020, 3, 31), 24);
+
+            var estimationSettings = new EstimationSettings
+            {
+                AnnualQuantity = 36500,
+                BillingPeriods = new List<BillingPeriodInfo>
+                {
+                    januaryBillingInfo,
+                    februaryBillingInfo,
+                    marchBillingInfo
+                }
+            };
+
+            // Act
+            decimal result = this._seasonalWeightingCalculator.Estimate(estimationSettings);
+
+            // Assert
+            result.ShouldBe(11226.0m);
+        }
+
+        private static BillingPeriodInfo CreateBillingInfo(DateTime start, DateTime end, int seasonalWeighting)
+        {
+            return new BillingPeriodInfo
+            {
+                StartDate = start,
+                EndDate = end,
+                SeasonalWeighting = seasonalWeighting
+            };
         }
     }
 }

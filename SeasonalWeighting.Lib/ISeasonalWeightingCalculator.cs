@@ -1,7 +1,9 @@
-﻿namespace SeasonalWeighting.Lib
+﻿using System.Threading.Tasks;
+
+namespace SeasonalWeighting.Lib
 {
     public interface ISeasonalWeightingCalculator
     {
-        decimal Estimate(EstimationSettings estimationSettings);
+        Task<decimal> EstimateAsync(EstimationSettings estimationSettings);
     }
 }

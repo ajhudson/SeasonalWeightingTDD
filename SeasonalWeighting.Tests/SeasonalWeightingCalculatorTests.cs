@@ -4,6 +4,7 @@ using Shouldly;
 
 namespace SeasonalWeighting.Tests
 {
+    [TestFixture]
     public class Tests
     {
         private ISeasonalWeightingCalculator _seasonalWeightingCalculator;
@@ -20,10 +21,10 @@ namespace SeasonalWeighting.Tests
             // Arrange
 
             // Act
-            int result = this._seasonalWeightingCalculator.CalculateSeasonalWeighting();
+            decimal result = this._seasonalWeightingCalculator.Estimate();
 
             // Assert
-            result.ShouldBe(3720);
+            result.ShouldBe(3720.0m);
         }
     }
 }
